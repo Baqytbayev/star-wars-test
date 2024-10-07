@@ -1,7 +1,7 @@
 import {gql} from "@apollo/client";
 import url from "@/api/apollo";
 import {IStarWars} from "@/interface/star-wars";
-import Link from "next/link"; // настрой свой Apollo Client
+import Link from "next/link";
 
 async function getPeople() {
   try {
@@ -33,18 +33,17 @@ export default async function Home() {
   return (
     <div className="flex flex-col justify-center">
       <p className="flex text-4xl text-fuchsia-400 font-serif">Добро пожаловать в Next.js!</p>
+      <Link href={'/favorite'}>
+        избранные
+      </Link>
       <div className=" w-2/3 flex flex-col divide-y divide-gray-100 gap-3">
         {people.map(({ id, name }: { id: string, name: string }) => (
           <div key={id} className={'flex flex-row justify-between items-center'}>
             <p >{name}</p>
             <div className={'flex flex-row gap-3'}>
-              <Link className={'px-6 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 transition duration-200 ease-in-out'} href={`/full-info/${id}`}>Полная информация</Link>
-              <div className="mt-4">
-                <button
-                  className="px-6 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 transition duration-200 ease-in-out">
-                  Добавить в избранное
-                </button>
-              </div>
+              <Link className={'px-6 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 transition duration-200 ease-in-out'}
+                    href={`/full-info/${id}`}>Полная информация</Link>
+              
             </div>
           
           </div>
